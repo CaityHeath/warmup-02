@@ -4,6 +4,7 @@ const express = require('express');
 const app = express();
 const PORT = process.env.PORT || 8000;
 
+
 //EJS Template
 app.set('views', `${__dirname}/views`);
 app.set(`view engine`, `ejs`);

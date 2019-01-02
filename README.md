@@ -23,7 +23,7 @@
   * Opens a browser page with a simple hello message. 
 * Endpoint: `http://localhost:8000/err`
   * Opens a browser page with a 500 server error message.
-*Endpoing: `http://localhost:8000/aldjfalkdjfa(nonesense)
+* Endpoint: `http://localhost:8000/aldjfalkdjfa(nonesense)
   * Opens a browser page with a 404 page not found error.
 
 

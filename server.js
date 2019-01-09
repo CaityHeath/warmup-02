@@ -1,23 +1,23 @@
 'use strict';
 
+
 const express = require('express');
 const app = express();
+
+
 const PORT = process.env.PORT || 8000;
 
 
-//EJS Template
-app.set('views', `${__dirname}/views`);
+app.set('views', `./views`);
 app.set(`view engine`, `ejs`);
 
-//static routes
-app.use(express.static(`${__dirname}/public`));
 
-//middleware
+app.use(express.static(`/public`));
+
 app.use(express.json());
 
-//routes
 app.get('/', (req, res)=>{
-  res.send('<h1>Hello /</h1>');
+  res.send('<h1> hello world /</h1>');
 });
 
 app.post('/save', (req, res) =>{
@@ -25,7 +25,7 @@ app.post('/save', (req, res) =>{
 });
 
 app.get('/err', (req, res, next) => {
-  next(`This is an error`);
+  next(`error`);
 });
 
 app.get('*', (req, res)=>{

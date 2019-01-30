@@ -2,16 +2,16 @@
 
 const express = require('express');
 const app = express();
-const PORT = process.env.PORT || 8000;
-//EJS Template
-app.set('views', `${__dirname}/views`);
-app.set(`view engine`, `ejs`);
 
-app.use(express.static(`${__dirname}/public`));
-app.use(express.json);
+app.set('views', './views');
+app.set('view engine', 'ejs');
 
-app.get('/', (req, res) => {
-  res.send('<h1> Hello </h1>');
+app.use(express.static('./public'));
+
+app.use(express.json());
+
+app.get('/', (req, res) =>{
+  res.send('<h1>Hello</h1>');
 });
 
 app.post('/save', (req, res) => {
@@ -19,19 +19,25 @@ app.post('/save', (req, res) => {
 });
 
 app.get('/err', (req, res, next) => {
-  next('this is an error');
+  next('Error');
 });
 
-app.post('*', (req, res) => {
+app.get('*', (req, res) => {
   res.status(404);
-  res.statusMessage = 'page not found';
-  res.render('error', {request: req});
+  res.statusMessage = 'notfound';
+  res.render('not-found', {request: req});
 });
 
 app.use((err, req, res, next) => {
   res.status(500);
-  res.statusMessage('Server Error');
+  res.statusMessage = 'Server Error';
   res.render('error', {request: req, error: err});
 });
 
-app.listen(PORT, () => console.log('Server up on 8000'));
+module.exports = {
+  server: app,
+  start: () => {
+    const PORT = process.env.PORT || 3000;
+    app.listen(PORT, () => console.log(`server up on ${PORT}`));
+  },
+};

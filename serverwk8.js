@@ -22,6 +22,7 @@ app.get('/err', (req, res, next) => {
   next('Error');
 });
 
+
 app.get('*', (req, res) => {
   res.status(404);
   res.statusMessage = 'notfound';
